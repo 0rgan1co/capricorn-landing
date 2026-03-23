@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capricorn — Process Discovery for Smarter Deals</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Red+Hat+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'Poppins',sans-serif; font-size:17px; line-height:25px; font-weight:400; color:#444242; background:#000; }
+h1,h2,h3,h4 { font-family:'Red Hat Display','Poppins',sans-serif; font-weight:900; line-height:1.15; }
+
+/* ── PALETTE ── */
+/* Dark sections: bg #000 or #1E3232, text white */
+/* Light sections: bg #FFF or #F5F5F5, text #444242 */
+/* Accent: #00E5A1 everywhere */
+
+.dark { background:#000; color:#FFF; }
+.dark-teal { background:#1E3232; color:#FFF; }
+.light { background:#FFF; color:#444242; }
+.light-grey { background:#F5F5F5; color:#444242; }
+
+/* ── NAV ── */
+nav {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:20px 5%; position:sticky; top:0; z-index:50;
+  background:rgba(0,0,0,0.92); backdrop-filter:blur(5px);
+}
+.nav-brand { display:flex; align-items:center; gap:10px; }
+.nav-brand .parent { font-size:15px; color:rgba(255,255,255,0.5); font-weight:600; }
+.nav-brand .sep { color:rgba(255,255,255,0.3); }
+.nav-brand .product { font-family:'Red Hat Display',sans-serif; font-size:20px; font-weight:900; color:#00E5A1; }
+.nav-links { display:flex; gap:32px; align-items:center; }
+.nav-links a { color:rgba(255,255,255,0.7); text-decoration:none; font-size:14px; font-weight:500; transition:color .3s; }
+.nav-links a:hover { color:#00E5A1; }
+
+/* ── BUTTONS ── */
+.btn {
+  display:inline-block; padding:14px 32px; border-radius:0;
+  font-size:15px; font-weight:600; text-decoration:none;
+  transition:all .3s; font-family:'Poppins',sans-serif; cursor:pointer; border:none;
+}
+.btn-green { background:#00E5A1; color:#000; }
+.btn-green:hover { background:#00cc8e; box-shadow:0 0 40px rgba(0,229,161,0.3); }
+.btn-white { background:#FFF; color:#000; }
+.btn-white:hover { background:#00E5A1; }
+.btn-outline-white { border:2px solid rgba(255,255,255,0.3); color:#FFF; background:transparent; }
+.btn-outline-white:hover { border-color:#00E5A1; color:#00E5A1; }
+.btn-outline-dark { border:2px solid #444242; color:#444242; background:transparent; }
+.btn-outline-dark:hover { border-color:#00E5A1; color:#00E5A1; }
+
+/* ── SECTIONS ── */
+section { padding:120px 5%; }
+.container { max-width:1140px; margin:0 auto; }
+.label { font-size:12px; text-transform:uppercase; letter-spacing:3px; color:#00E5A1; font-weight:600; margin-bottom:20px; }
+.title-dark { font-size:45px; color:#FFF; margin-bottom:24px; }
+.title-light { font-size:45px; color:#000; margin-bottom:24px; }
+.title-dark em, .title-light em { font-style:normal; color:#00E5A1; }
+.sub-dark { font-size:17px; color:rgba(255,255,255,0.7); max-width:680px; line-height:28px; }
+.sub-light { font-size:17px; color:#666; max-width:680px; line-height:28px; }
+
+/* ── HERO (black) ── */
+.hero {
+  min-height:92vh; display:flex; align-items:center; justify-content:center;
+  padding:120px 5%; text-align:center; background:#000;
+  background-image:radial-gradient(ellipse at 50% 90%, rgba(0,229,161,0.07) 0%, transparent 55%);
+}
+.hero-inner { max-width:780px; }
+.hero h1 { font-size:58px; color:#FFF; margin-bottom:28px; letter-spacing:-2px; }
+.hero h1 em { font-style:normal; color:#00E5A1; }
+.hero p { font-size:18px; color:rgba(255,255,255,0.65); max-width:580px; margin:0 auto 48px; line-height:30px; }
+
+/* ── GAP (white) ── */
+.gap-content { max-width:720px; }
+.gap-quote {
+  font-family:'Red Hat Display',sans-serif; font-size:34px; font-weight:900;
+  color:#000; line-height:1.3; margin-bottom:32px;
+}
+.gap-quote em { font-style:normal; color:#00E5A1; }
+.gap-body { font-size:17px; color:#666; line-height:30px; }
+.gap-body strong { color:#000; }
+.gap-highlight {
+  display:inline-block; margin-top:36px; padding:18px 28px;
+  background:rgba(0,229,161,0.08); border-left:4px solid #00E5A1;
+  font-size:19px; font-weight:700; color:#000;
+}
+
+/* ── PILLARS (dark teal #1E3232) ── */
+.pillars { display:grid; grid-template-columns:repeat(3,1fr); gap:0; margin-top:64px; }
+.pillar {
+  padding:44px 32px; border:1px solid rgba(255,255,255,0.08);
+  transition:all .3s;
+}
+.pillar:hover { background:rgba(255,255,255,0.04); }
+.pillar-bar { width:40px; height:4px; background:#00E5A1; margin-bottom:28px; }
+.pillar h3 { font-size:19px; color:#FFF; margin-bottom:14px; }
+.pillar p { font-size:15px; color:rgba(255,255,255,0.65); line-height:26px; }
+
+/* ── USE CASES (light grey) ── */
+.cases { display:grid; grid-template-columns:1fr 1fr; gap:0; margin-top:64px; }
+.case-card {
+  padding:48px 40px; border:1px solid rgba(0,0,0,0.06);
+  transition:all .3s; position:relative; overflow:hidden;
+}
+.case-card::before {
+  content:''; position:absolute; top:0; left:0; right:0;
+  height:4px; background:#00E5A1; transform:scaleX(0);
+  transition:transform .3s; transform-origin:left;
+}
+.case-card:hover::before { transform:scaleX(1); }
+.case-card:hover { background:#FFF; box-shadow:12px 12px 50px rgba(0,0,0,0.08); }
+.case-badge {
+  display:inline-block; padding:5px 14px; font-size:11px; font-weight:700;
+  text-transform:uppercase; letter-spacing:1px; margin-bottom:20px;
+  background:rgba(0,229,161,0.1); color:#00916a;
+}
+.case-card h3 { font-size:24px; color:#000; margin-bottom:6px; }
+.case-card .audience { font-size:14px; color:#999; font-style:italic; margin-bottom:20px; }
+.case-card > p { font-size:15px; color:#666; line-height:26px; margin-bottom:24px; }
+.case-card ul { list-style:none; }
+.case-card ul li {
+  font-size:14px; color:#666; padding:10px 0 10px 24px; position:relative;
+  border-bottom:1px solid rgba(0,0,0,0.06);
+}
+.case-card ul li:last-child { border:none; }
+.case-card ul li::before {
+  content:''; position:absolute; left:0; top:17px;
+  width:12px; height:2px; background:#00E5A1;
+}
+
+/* ── STEPS (black) ── */
+.steps { display:grid; grid-template-columns:repeat(3,1fr); gap:0; margin-top:64px; position:relative; }
+.steps::before {
+  content:''; position:absolute; top:28px; left:16.66%; right:16.66%;
+  height:1px; background:rgba(255,255,255,0.15);
+}
+.step { text-align:center; padding:0 28px; position:relative; }
+.step-num {
+  width:56px; height:56px; border:2px solid #00E5A1;
+  display:grid; place-items:center; font-family:'Red Hat Display',sans-serif;
+  font-weight:900; font-size:20px; color:#00E5A1; background:#000;
+  margin:0 auto 28px; position:relative; z-index:2;
+}
+.step h3 { font-size:18px; color:#FFF; margin-bottom:14px; }
+.step p { font-size:14px; color:rgba(255,255,255,0.6); line-height:24px; }
+
+/* ── ECOSYSTEM (green bg) ── */
+.eco-section {
+  background:#00E5A1; padding:120px 5%; text-align:center; color:#000;
+}
+.eco-inner { max-width:1140px; margin:0 auto; }
+.eco-label { font-size:12px; text-transform:uppercase; letter-spacing:3px; color:#000; font-weight:700; margin-bottom:20px; opacity:0.5; }
+.eco-inner h2 { font-size:45px; color:#000; margin-bottom:20px; }
+.eco-inner h2 em { font-style:normal; color:#1E3232; }
+.eco-inner > p { font-size:17px; color:rgba(0,0,0,0.65); max-width:540px; margin:0 auto 48px; line-height:28px; }
+.eco-badges { display:flex; justify-content:center; gap:16px; margin-bottom:48px; flex-wrap:wrap; }
+.eco-badge {
+  padding:12px 28px; border:2px solid rgba(0,0,0,0.15); font-size:14px;
+  font-weight:600; color:#000; transition:all .3s; background:transparent;
+}
+.eco-badge:hover { background:#000; color:#00E5A1; border-color:#000; }
+.eco-coming { font-size:14px; color:rgba(0,0,0,0.5); margin-bottom:28px; }
+.email-form { display:flex; gap:0; justify-content:center; max-width:440px; margin:0 auto; }
+.email-input {
+  flex:1; padding:14px 18px; border:2px solid rgba(0,0,0,0.15); border-right:none;
+  background:rgba(255,255,255,0.5); color:#000; font-size:15px;
+  font-family:inherit; outline:none;
+}
+.email-input:focus { border-color:#000; }
+.email-input::placeholder { color:rgba(0,0,0,0.35); }
+.btn-black { background:#000; color:#00E5A1; }
+.btn-black:hover { background:#1E3232; }
+
+/* ── TRUST (white) ── */
+.trust-grid { display:grid; grid-template-columns:1fr 1fr; gap:0; margin-top:56px; }
+.trust-item {
+  display:flex; align-items:flex-start; gap:16px; padding:32px;
+  border:1px solid rgba(0,0,0,0.06); transition:all .3s;
+}
+.trust-item:hover { background:#F5F5F5; }
+.trust-check { color:#00E5A1; font-size:22px; flex-shrink:0; font-weight:700; }
+.trust-item p { font-size:15px; color:#666; line-height:24px; }
+.trust-item strong { color:#000; }
+
+/* ── CTA FINAL (dark teal) ── */
+.cta-final {
+  text-align:center; padding:140px 5%; background:#1E3232;
+  background-image:radial-gradient(ellipse at 50% 30%, rgba(0,229,161,0.1) 0%, transparent 50%);
+}
+.cta-final h2 { font-size:48px; color:#FFF; margin-bottom:20px; }
+.cta-final h2 em { font-style:normal; color:#00E5A1; }
+.cta-final p { font-size:18px; color:rgba(255,255,255,0.6); margin-bottom:48px; }
+.cta-final .btn { padding:18px 56px; font-size:17px; }
+
+/* ── FOOTER (black) ── */
+footer { padding:48px 5%; text-align:center; background:#000; }
+footer p { font-size:14px; color:rgba(255,255,255,0.4); }
+footer .brand { color:#FFF; font-weight:700; }
+footer .tagline { color:#00E5A1; font-weight:600; font-size:15px; margin-top:8px; letter-spacing:1px; }
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px) {
+  nav { padding:14px 5%; }
+  .nav-links { display:none; }
+  section { padding:80px 5%; }
+  .hero { min-height:auto; padding:100px 5%; }
+  .hero h1 { font-size:34px; letter-spacing:-1px; }
+  .title-dark, .title-light, .eco-inner h2, .cta-final h2 { font-size:30px; }
+  .gap-quote { font-size:24px; }
+  .pillars, .cases, .steps, .trust-grid { grid-template-columns:1fr; }
+  .steps::before { display:none; }
+  .email-form { flex-direction:column; }
+  .email-input { border-right:2px solid rgba(0,0,0,0.15); }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV — black -->
+<nav>
+  <div class="nav-brand">
+    <span class="parent">Las Cabras</span>
+    <span class="sep">/</span>
+    <span class="product">Capricorn</span>
+  </div>
+  <div class="nav-links">
+    <a href="#gap">Why</a>
+    <a href="#what">What</a>
+    <a href="#cases">Use Cases</a>
+    <a href="#how">How</a>
+    <a href="#ecosystem">Ecosystem</a>
+    <a class="btn btn-green" href="#contact">Contact Us</a>
+  </div>
+</nav>
+
+<!-- HERO — black -->
+<div class="hero">
+  <div class="hero-inner">
+    <p class="label">Process Discovery</p>
+    <h1>Connecting data for<br>smarter <em>deals</em>.</h1>
+    <p>We build process digital twins from real execution data — so investors and leaders make decisions based on how businesses actually run, not how they're described.</p>
+    <a href="#contact" class="btn btn-green">Book a Discovery Call</a>
+  </div>
+</div>
+
+<!-- GAP — white -->
+<section class="light" id="gap">
+  <div class="container">
+    <div class="gap-content">
+      <p class="label">The Problem</p>
+      <p class="gap-quote">Growth starts with <em>seeing clearly</em>.<br>But deals still close on perception.</p>
+      <p class="gap-body">
+        Due diligence relies on documents, interviews, and assumptions. The result? Decisions based on how people <strong>describe</strong> the business — not how it actually <strong>runs</strong>.
+        <br><br>
+        The data that reveals operational truth already lives in your systems. ERPs, CRMs, financial platforms, operational tools. It's there.
+      </p>
+      <div class="gap-highlight">Nobody connects it. We do.</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT — dark teal -->
+<section class="dark-teal" id="what">
+  <div class="container">
+    <p class="label">What Capricorn Does</p>
+    <h2 class="title-dark">Process digital twins.<br>Built from <em>execution data</em>.</h2>
+    <p class="sub-dark">Capricorn connects to your client's systems, extracts real operational data, and builds a mathematical model of how their processes actually work. AI agents gather context. Analytics surface the opportunities.</p>
+
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-bar"></div>
+        <h3>Execution over perception</h3>
+        <p>We don't ask how things work. We measure it. Mathematical metrics from real data — replacing surveys and assumptions with evidence.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-bar"></div>
+        <h3>AI-powered discovery</h3>
+        <p>Intelligent agents collect business context, map dependencies, and identify improvement opportunities — so you focus on decisions, not data gathering.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-bar"></div>
+        <h3>Data sovereignty, always</h3>
+        <p>NDA signed before any access. Your client's data stays in their perimeter. We connect, we analyze, we deliver. We never store.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- USE CASES — light grey -->
+<section class="light-grey" id="cases">
+  <div class="container">
+    <p class="label">Use Cases</p>
+    <h2 class="title-light">Whether you get <em>one shot</em><br>or ongoing access.</h2>
+
+    <div class="cases">
+      <div class="case-card">
+        <span class="case-badge">One-shot</span>
+        <h3>Due Diligence</h3>
+        <p class="audience">For Bankers &amp; Investors</p>
+        <p>You get limited access to the data room. Make it count. Capricorn builds a process digital twin from a single extraction — revealing what documents alone can't show.</p>
+        <ul>
+          <li>Operational red flags before the deal closes</li>
+          <li>Process efficiency scoring across business units</li>
+          <li>Evidence-based insights for Investment Committee</li>
+        </ul>
+      </div>
+      <div class="case-card">
+        <span class="case-badge">Recurring</span>
+        <h3>Post-M&amp;A Monitoring</h3>
+        <p class="audience">For CEOs &amp; Integration Leaders</p>
+        <p>The deal closed. Now drive the growth. Capricorn continuously monitors execution data from both entities — tracking synergies, detecting friction, measuring real progress.</p>
+        <ul>
+          <li>Synergy tracking with operational data, not reports</li>
+          <li>Cross-entity process comparison</li>
+          <li>Integration health dashboard in real time</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW — black -->
+<section class="dark" id="how">
+  <div class="container">
+    <p class="label">How It Works</p>
+    <h2 class="title-dark">From NDA to <em>digital twin</em>.</h2>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Connect</h3>
+        <p>We sign an NDA. We scope the processes that matter and identify the systems that hold the execution data.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Model</h3>
+        <p>We integrate, extract, and build the process digital twin. AI agents map business context. Mathematical models reveal reality.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Discover</h3>
+        <p>Scored improvement opportunities, risk flags, and actionable recommendations — all from real execution data.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ECOSYSTEM — green -->
+<div class="eco-section" id="ecosystem">
+  <div class="eco-inner">
+    <p class="eco-label">Ecosystem</p>
+    <h2><em>Connecting</em> for growth. Together.</h2>
+    <p>We're building a community around smarter deals — connecting the people who move capital with the technology that makes it intelligent.</p>
+
+    <div class="eco-badges">
+      <span class="eco-badge">Consulting</span>
+      <span class="eco-badge">Technology</span>
+      <span class="eco-badge">Private Equity</span>
+    </div>
+
+    <p class="eco-coming">Coming soon — exclusive ecosystem events with leading firms.</p>
+
+    <form class="email-form" onsubmit="event.preventDefault();">
+      <input class="email-input" type="email" placeholder="your@email.com">
+      <button class="btn btn-black" type="submit">Get Early Access</button>
+    </form>
+  </div>
+</div>
+
+<!-- TRUST — white -->
+<section class="light" id="trust">
+  <div class="container">
+    <p class="label">Trust</p>
+    <h2 class="title-light">Your data. <em>Your rules</em>.</h2>
+
+    <div class="trust-grid">
+      <div class="trust-item">
+        <span class="trust-check">&#10003;</span>
+        <p><strong>NDA first</strong> — Signed before any system access. Always.</p>
+      </div>
+      <div class="trust-item">
+        <span class="trust-check">&#10003;</span>
+        <p><strong>Zero retention</strong> — We don't store data post-delivery. Period.</p>
+      </div>
+      <div class="trust-item">
+        <span class="trust-check">&#10003;</span>
+        <p><strong>Isolated infrastructure</strong> — Dedicated environment per engagement.</p>
+      </div>
+      <div class="trust-item">
+        <span class="trust-check">&#10003;</span>
+        <p><strong>Financial-grade compliance</strong> — Built for the standards investors expect.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA — dark teal -->
+<div class="cta-final" id="contact">
+  <h2>Your next deal deserves<br>a <em>digital twin</em>.</h2>
+  <p>Let's connect and explore how Capricorn fits into your process.</p>
+  <a href="mailto:mariano.stampella@las-cabras.com" class="btn btn-green">Book a Discovery Call</a>
+</div>
+
+<!-- FOOTER — black -->
+<footer>
+  <p><span class="brand">Capricorn</span> — A Las Cabras Product</p>
+  <p class="tagline">Connecting for growth.</p>
+</footer>
+
+</body>
+</html>
