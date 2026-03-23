@@ -211,6 +211,9 @@ footer { padding:48px 5%; text-align:center; background:#000; }
 footer p { font-size:14px; color:rgba(255,255,255,0.4); }
 footer .brand { color:#FFF; font-weight:700; }
 footer .tagline { color:#00E5A1; font-weight:600; font-size:15px; margin-top:8px; letter-spacing:1px; }
+.footer-team { display:flex; justify-content:center; gap:24px; flex-wrap:wrap; margin-bottom:24px; }
+.footer-team a { color:rgba(255,255,255,0.5); text-decoration:none; font-size:13px; font-weight:500; transition:color .3s; }
+.footer-team a:hover { color:#00E5A1; }
 
 /* ── RESPONSIVE ── */
 @media(max-width:768px) {
@@ -422,11 +425,18 @@ footer .tagline { color:#00E5A1; font-weight:600; font-size:15px; margin-top:8px
 <div class="cta-final" id="contact">
   <h2>Your next deal deserves<br><em>real data</em>, not just documents.</h2>
   <p>Let's explore how Capricorn can fit into your due diligence or integration process.</p>
-  <a href="mailto:mariano.stampella@las-cabras.com" class="btn btn-green">Book a Discovery Call</a>
+  <a href="mailto:mariano.stampella@las-cabras.com?cc=andres.vior@las-cabras.com,javier.brugues@las-cabras.com,ricardo.colusso@las-cabras.com,jorge.roldan@las-cabras.com&subject=Capricorn%20—%20Discovery%20Call" class="btn btn-green">Book a Discovery Call</a>
 </div>
 
 <!-- FOOTER — black -->
 <footer>
+  <div class="footer-team">
+    <a href="mailto:andres.vior@las-cabras.com">Andrés Vior</a>
+    <a href="mailto:javier.brugues@las-cabras.com">Javier Brugués</a>
+    <a href="mailto:mariano.stampella@las-cabras.com">Mariano Stampella</a>
+    <a href="mailto:ricardo.colusso@las-cabras.com">Ricardo Colusso</a>
+    <a href="mailto:jorge.roldan@las-cabras.com">Jorge Roldán</a>
+  </div>
   <p><span class="brand">Capricorn</span> — A Las Cabras Product</p>
   <p class="tagline">Connecting for growth.</p>
 </footer>
