@@ -62,19 +62,27 @@ section { padding:120px 5%; }
 
 /* ── HERO (black) ── */
 .hero {
-  min-height:92vh; display:flex; align-items:center; justify-content:center;
-  padding:120px 5%; text-align:center;
-  background:#000 url('cabra.jpg') center center / cover no-repeat;
+  min-height:92vh; display:flex; align-items:center;
+  padding:0 5%; background:#000; position:relative;
+}
+.hero-layout {
+  max-width:1140px; margin:0 auto; display:grid;
+  grid-template-columns:1fr 1fr; align-items:center; gap:0;
+  width:100%;
+}
+.hero-text { padding:80px 0; padding-right:60px; }
+.hero-text h1 { font-size:52px; color:#FFF; margin-bottom:24px; letter-spacing:-2px; text-align:left; }
+.hero-text h1 em { font-style:normal; color:#00E5A1; }
+.hero-text p { font-size:17px; color:rgba(255,255,255,0.65); line-height:28px; margin-bottom:40px; text-align:left; }
+.hero-text .label { text-align:left; }
+.hero-image {
+  height:92vh; background:url('cabra.jpg') center center / cover no-repeat;
   position:relative;
 }
-.hero::before {
+.hero-image::before {
   content:''; position:absolute; inset:0;
-  background:linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.85) 60%, #000 100%);
+  background:linear-gradient(90deg, #000 0%, transparent 30%);
 }
-.hero-inner { max-width:780px; position:relative; z-index:2; }
-.hero h1 { font-size:58px; color:#FFF; margin-bottom:28px; letter-spacing:-2px; }
-.hero h1 em { font-style:normal; color:#00E5A1; }
-.hero p { font-size:18px; color:rgba(255,255,255,0.65); max-width:580px; margin:0 auto 48px; line-height:30px; }
 
 /* ── GAP (white) ── */
 .gap-content { max-width:720px; }
@@ -209,8 +217,11 @@ footer .tagline { color:#00E5A1; font-weight:600; font-size:15px; margin-top:8px
   nav { padding:14px 5%; }
   .nav-links { display:none; }
   section { padding:80px 5%; }
-  .hero { min-height:auto; padding:100px 5%; }
-  .hero h1 { font-size:34px; letter-spacing:-1px; }
+  .hero { min-height:auto; }
+  .hero-layout { grid-template-columns:1fr; }
+  .hero-text { padding:80px 0; padding-right:0; }
+  .hero-text h1 { font-size:34px; letter-spacing:-1px; }
+  .hero-image { height:50vh; }
   .title-dark, .title-light, .eco-inner h2, .cta-final h2 { font-size:30px; }
   .gap-quote { font-size:24px; }
   .pillars, .cases, .steps, .trust-grid { grid-template-columns:1fr; }
@@ -239,13 +250,16 @@ footer .tagline { color:#00E5A1; font-weight:600; font-size:15px; margin-top:8px
   </div>
 </nav>
 
-<!-- HERO — black -->
+<!-- HERO — black + image -->
 <div class="hero">
-  <div class="hero-inner">
-    <p class="label">Process Discovery</p>
-    <h1>Stop doing due diligence <em>blind</em>.</h1>
-    <p>Find hidden risks. Discover untapped value. Decide with execution data, not assumptions.</p>
-    <a href="#contact" class="btn btn-green">Book a Discovery Call</a>
+  <div class="hero-layout">
+    <div class="hero-text">
+      <p class="label">Process Discovery</p>
+      <h1>Stop doing due diligence <em>blind</em>.</h1>
+      <p>Find hidden risks. Discover untapped value. Decide with execution data, not assumptions.</p>
+      <a href="#contact" class="btn btn-green">Book a Discovery Call</a>
+    </div>
+    <div class="hero-image"></div>
   </div>
 </div>
 
